@@ -1,12 +1,17 @@
-import { Link, Outlet, useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link, Outlet, useParams, useLocation } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
 import { moviesApi } from "../../api-key";
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
+import GoBack from "../../components/GoBack/GoBack";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [details, setDetails] = useState();
+
+  const location = useLocation();
+  const locationRef = useRef(location.state?.from ?? "/");
+
   useEffect(() => {
     const getMovieDetails = async () => {
       try {
@@ -22,7 +27,8 @@ const MovieDetailsPage = () => {
 
   return (
     <section>
-      <button onClick={() => navigate(-1)}>Back</button>
+      <GoBack to={locationRef.current}></GoBack>
+      {/* <button onClick={() => navigate(-1)}>Back</button> */}
       {details ? <DetailsCard data={details} /> : "Loading..."}
       <nav>
         <p>Additional information</p>
