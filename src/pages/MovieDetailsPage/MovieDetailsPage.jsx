@@ -10,7 +10,7 @@ const MovieDetailsPage = () => {
   const [details, setDetails] = useState();
 
   const location = useLocation();
-  const locationRef = useRef(location.state?.from ?? "/");
+  const locationRef = useRef(location.state ?? "/");
 
   useEffect(() => {
     const getMovieDetails = async () => {
