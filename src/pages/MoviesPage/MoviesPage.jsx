@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { moviesApi } from "../../api-key";
 import style from "./MoviesPage.module.css";
-import MovieList from "../../components/DetailsCard/MovieList";
+import MovieList from "../../components/MovieList/MovieList";
 
 const MoviesPage = () => {
   const [query, setQuery] = useState("");
@@ -41,7 +41,7 @@ const MoviesPage = () => {
         />
         <button type="submit">Search</button>
       </form>
-      <MovieList searchedMovies={searchedMovies} />
+      <MovieList movies={searchedMovies} />
     </section>
   );
 };

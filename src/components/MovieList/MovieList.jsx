@@ -3,13 +3,17 @@ export default function MovieList({ movies }) {
   const location = useLocation();
   return (
     <div>
-      {movies.map((movie) => (
-        <div key={movie.id}>
-          <Link to={`/movies/${movie.id}`} state={location}>
-            <p>{movie.title}</p>
-          </Link>
-        </div>
-      ))}
+      {movies
+        ? movies.map((itm) => {
+            return (
+              <div key={itm.id}>
+                <Link to={`/movies/${itm.id}`} state={location}>
+                  {itm.title}
+                </Link>
+              </div>
+            );
+          })
+        : "Loading..."}
     </div>
   );
 }
